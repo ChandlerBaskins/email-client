@@ -1,0 +1,18 @@
+<div class="field">
+  <label for="">{{ label }}</label>
+  <input [type] ="inputType" [formControl]="control" type="text" />
+  <div *ngIf="showErrors()" class="ui pointing red basic label">
+    <p *ngIf="control.errors.required">Value is required.</p>
+    <p *ngIf="control.errors.minlength">
+      Values entered is {{ control.errors.minlength.actualLength }} characters
+      long, but it must be atleast {{ control.errors.minlength.requiredLength }}
+    </p>
+    <p *ngIf="control.errors.maxlength">
+      Values entered is {{ control.errors.minlength.actualLength }} characters
+      long, but it must be atleast {{ control.errors.maxlength.requiredLength }}
+    </p>
+    <p *ngIf="control.errors.pattern">Invalid format.</p>
+    <p *ngIf="control.errors.nonUniqueUsername">Username is taken</p>
+    <p *ngIf="control.errors.noConnection">Can't tell is user istaken.</p>
+  </div>
+</div>
