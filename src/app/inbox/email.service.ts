@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Email } from './email';
 
 interface EmailSummary {
   id: string;
@@ -16,5 +17,9 @@ export class EmailService {
 
   getEmails() {
     return this.http.get<EmailSummary[]>(`${this.rootUrl}/emails`);
+  }
+
+  getEmail(id: string) {
+    return this.http.get<Email>(`${this.rootUrl}/emails/${id}`);
   }
 }
