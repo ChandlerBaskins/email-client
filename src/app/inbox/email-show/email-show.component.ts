@@ -10,7 +10,7 @@ import { Email } from '../email';
 export class EmailShowComponent implements OnInit {
   email: Email;
   constructor(private route: ActivatedRoute) {
-    //  Could assign the snapsho tjust in case the sub  doesnt  finish
+    //  Could assign the snapshot just in case the sub  doesnt  finish
     //this.email = route.snapshot.data.email
     this.route.data.subscribe(({ email }) => {
       this.email = email;
