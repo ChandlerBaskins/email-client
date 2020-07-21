@@ -1,15 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input,Output, EventEmitter } from '@angular/core';
+import { Email } from '../email';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-email-form',
   templateUrl: './email-form.component.html',
-  styleUrls: ['./email-form.component.css']
+  styleUrls: ['./email-form.component.css'],
 })
 export class EmailFormComponent implements OnInit {
-
-  constructor() { }
+  @Input() email: Email;
+  @Output() emailSubmit  = new EventEmitter()
+  emailForm: FormGroup;
+  constructor() {}
 
   ngOnInit(): void {
+    const { subject, from, to, text } = this.email;
+
+    this.emailForm = new FormGroup({
+      to: new FormControl(to, [Validators.required, Validators.email]),
+      subject: new FormControl(subject, [Validators.required]),
+      from: new FormControl({ value: from, disabled: true }),
+      text: new FormControl(text, [Validators.required]),
+    });
   }
 
+
+  onSubmit() {
+    if(this.emailForm.invalid) return
+
+    this.emailSubmit.emit(this.emailForm.value)
+  }
 }

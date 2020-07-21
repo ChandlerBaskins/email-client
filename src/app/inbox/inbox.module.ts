@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { InboxRoutingModule } from './inbox-routing.module';
 import { HomeComponent } from './home/home.component';
 import { EmailCreateComponent } from './email-create/email-create.component';
@@ -11,6 +10,7 @@ import { EmailPlaceholderComponent } from './email-placeholder/email-placeholder
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SharedModule } from '../shared/shared.module';
 import { EmailFormComponent } from './email-form/email-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +23,11 @@ import { EmailFormComponent } from './email-form/email-form.component';
     NotFoundComponent,
     EmailFormComponent,
   ],
-  imports: [CommonModule, InboxRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    InboxRoutingModule,
+    SharedModule,
+    ReactiveFormsModule,
+  ],
 })
 export class InboxModule {}
